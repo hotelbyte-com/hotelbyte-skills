@@ -1,3 +1,7 @@
+> ⚠️ **RETIRED (2026-10-03)** — superseded by the MCP-era skill.
+> Source of truth: hotel-be tool contract → https://hotelbyte.com/skills/hotelbyte/SKILL.md
+> Install: `hbcli skill install`. Kept for historical reference (gotry #5 era); no longer maintained.
+
 ---
 name: hotelbyte-skills
 version: 0.1.0
