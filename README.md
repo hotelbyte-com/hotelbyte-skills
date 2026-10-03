@@ -25,5 +25,11 @@ cp hotel-be/mcp/gateway/skill/SKILL.md  ./SKILL.md # 发布到本仓（版本号
 
 ## 目录
 
-- `SKILL.md` — 当前发布的 agent skill（连接 / 用法手册 / 大结果处理 / 报价来源与降级 / 工具参考 / 错误处理）
+- `SKILL.md` — 主文档（连接 / 用法手册 / 大结果处理 / 报价来源与降级 / 错误处理）
+- `scripts/doctor.sh` — 连接自检（live / degraded / error 三值判定 + 修复指引）
+- `references/tools.md` — 全量工具契约（每个参数的类型/必填/说明，与 BE 工具契约同步渲染）
 - `contracts/` — CLI 直调时代的历史参考（gotry #5），已被 MCP 工具面取代，不再维护
+
+安装为完整目录（Claude Code 会加载同目录附属文件）：
+
+    hbcli skill install
