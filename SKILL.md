@@ -8,6 +8,11 @@ version: 0.3.0
 
 One integration, all supplier inventory, transparent pricing. Read tools are always available; booking tools (`order.book`, `order.cancel`) require explicit confirmation and exist only when the deployment enables them (check `tools/list`).
 
+## Files in this skill
+
+- `scripts/doctor.sh` — connection self-check. Run it (bash, from the skill dir) when tools fail to appear or calls error; it prints one verdict: `live` / `degraded` / `error` with the fix for each failing check.
+- `references/tools.md` — full tool contracts (every argument, type, required flag). Consult it before guessing a parameter name.
+
 ## Connection
 
 - Local (recommended on machines you control): `{ "mcpServers": { "hotelbyte": { "command": "hbcli", "args": ["mcp", "serve"] } } }` — no secrets in agent config.
@@ -42,13 +47,6 @@ Never call `order.book`/`order.cancel` without an explicit user decision — the
 - Narrow early: pass `hotelIds` (from a previous list) for precise follow-ups instead of re-listing the destination.
 - Call `hotel.rates` only for the 1-3 hotels the user shortlists, never for the whole list.
 - Page with `pageNum` when the user wants more options.
-
-## Quote provenance & degradation
-
-Rate data comes with a source you must surface honestly:
-- **Live**: normal path — cite `evidence.traceId` when the user asks for proof.
-- **Degraded**: a supplier marked as simulator/internal, or a static-package estimate — always label it ("estimated/simulated, not a live quote") before the user acts on it.
-- **Error / not installed**: tool errors carry remediation text (follow it); a missing local gateway means `hbcli` is not installed — point the user to `hbcli mcp setup <client>`.
 
 ## Result envelope
 
